@@ -46,11 +46,10 @@ function App() {
       <main>
         <input
           value={newTaskTitle}
-          onBlur={addTask}
-          onKeyDown={e => { if (e.key === 'Enter') addTask() }}
           placeholder="What do I need?"
           onChange={e => setNewTaskTitle(e.target.value)}
         />
+        <button onClick={addTask}>Add</button>
         {tasks.filter(task => !hideCompleted || !task.completed)
           .map(task => {
             const setTask = (value: typeof task) =>
@@ -86,9 +85,8 @@ function App() {
                 <input
                   value={task.title}
                   onChange={e => setTitle(e.target.value)}
-                  onBlur={saveTask}
-                  onKeyDown={e => { if (e.key === 'Enter') saveTask() }}
                 />
+                <button onClick={saveTask}>✔</button>
                 <button onClick={deleteTask}>x</button>
               </div>
             );
