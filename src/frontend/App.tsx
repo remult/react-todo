@@ -22,9 +22,7 @@ function App() {
     if (newTaskTitle) {
       try {
         const newTask = await taskRepo.insert({
-          title: newTaskTitle,
-          completed: false,
-          id: tasks.length + 1
+          title: newTaskTitle
         });
         setTasks([...tasks, newTask]);
         setNewTaskTitle('');

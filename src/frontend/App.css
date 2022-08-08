@@ -36,6 +36,7 @@ main>button {
 	color: #484848;
 	padding: 4px 8px;
 	font-size: inherit;
+	visibility: hidden;
 }
 
 
@@ -80,6 +81,9 @@ main input {
 
 main>input {
 	width: 273px
+}
+main>input:not(:placeholder-shown)+button{
+	visibility: visible;
 }
 
 input[type="checkbox"] {
