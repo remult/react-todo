@@ -61,7 +61,7 @@ function App() {
             };
             const saveTask = async () => {
               try {
-                await taskRepo.save(task);
+                setTask(await taskRepo.save(task));
               } catch (error: any) {
                 alert(error.message);
               }
