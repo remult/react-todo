@@ -5,7 +5,6 @@ import { auth } from "./auth";
 
 
 const app = express();
-app.use(auth);
 app.use(remultExpress({
     entities: [Task]
 }));
