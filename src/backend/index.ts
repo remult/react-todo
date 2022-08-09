@@ -1,6 +1,12 @@
 import express from "express";
-import { api } from "./api";
+import { remultExpress } from "remult/remult-express";
+import { Task } from "../shared/Task";
+import { auth } from "./auth";
+
 
 const app = express();
-app.use(api);
+app.use(auth);
+app.use(remultExpress({
+    entities: [Task]
+}));
 app.listen(3002, () => console.log("started"));

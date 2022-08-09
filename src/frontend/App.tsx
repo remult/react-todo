@@ -1,4 +1,3 @@
-import './App.css';
 import { useEffect, useState } from "react";
 import { Task } from "../shared/Task"
 import { Remult } from 'remult';
