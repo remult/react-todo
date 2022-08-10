@@ -6,7 +6,7 @@ import { Entity, Fields } from "remult";
 export class Task {
     @Fields.autoIncrement()
     id = 0;
-    @Fields.string({ allowApiUpdate: false })
+    @Fields.string()
     title = '';
     @Fields.boolean()
     completed = false;
