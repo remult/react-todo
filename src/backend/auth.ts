@@ -4,8 +4,8 @@ import { UserInfo } from "remult";
 export const auth = Router();
 
 export const validUsers: UserInfo[] = [
-    { id: "1", name: "Jane", roles: ["admin"] },
-    { id: "2", name: "Steve", roles: [] },
+    { id: "1", name: "Jane" },
+    { id: "2", name: "Steve" },
 ];
 auth.use(json());
 auth.post("/api/signIn", (req, res) => {
