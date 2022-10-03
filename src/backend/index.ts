@@ -4,6 +4,6 @@ import { Task } from "../shared/Task";
 
 const app = express();
 app.use(remultExpress({
-    entities: [Task]
+  entities: [Task]
 }));
 app.listen(3002, () => console.log("started"));
