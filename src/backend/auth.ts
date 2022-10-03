@@ -1,14 +1,16 @@
 import { Router, json } from "express";
+import { UserInfo } from "remult";
 
 export const auth = Router();
 
-export const users = [
+export const validUsers: UserInfo[] = [
     { id: "1", name: "Jane", roles: ["admin"] },
     { id: "2", name: "Steve", roles: [] },
 ];
 auth.use(json());
 auth.post("/api/signIn", (req, res) => {
-    const user = users.find((user) => user.name === req.body.username);
+    const user = validUsers.find(user =>
+        user.name === req.body.username);
     if (user) {
         req.session!.user = user;
         res.json(user);

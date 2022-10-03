@@ -1,20 +1,15 @@
 import { useEffect, useState } from "react";
 import { Task } from "../shared/Task"
-import { Remult } from 'remult';
+import { remult } from 'remult';
 
-const remult = new Remult();
 const taskRepo = remult.repo(Task);
-function fetchTasks() {
-  return taskRepo.find();
-}
 
 function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [newTaskTitle, setNewTaskTitle] = useState('');
-  const [hideCompleted, setHideCompleted] = useState<boolean>(false);
 
   useEffect(() => {
-    fetchTasks().then(setTasks);
+    taskRepo.find().then(setTasks);
   }, []);
 
   const addTask = async () => {
@@ -31,11 +26,11 @@ function App() {
     }
   }
 
-  const setAll = async (completed: boolean) => {
+  const setAllCompleted = async (completed: boolean) => {
     for (const task of await taskRepo.find()) {
       await taskRepo.save({ ...task, completed });
     }
-    fetchTasks().then(setTasks);
+    taskRepo.find().then(setTasks);
   }
 
   return (
@@ -47,7 +42,7 @@ function App() {
           onChange={e => setNewTaskTitle(e.target.value)}
         />
         <button onClick={addTask}>Add</button>
-        {tasks.filter(task => !hideCompleted || !task.completed)
+        {tasks
           .map(task => {
             const setTask = (value: typeof task) =>
               setTasks(tasks.map(t => t === task ? value : t));
@@ -89,13 +84,9 @@ function App() {
             );
           })}
       </main>
-      <input
-        type="checkbox"
-        checked={hideCompleted}
-        onChange={e => setHideCompleted(e.target.checked)} /> Hide Completed
       <div>
-        <button onClick={() => setAll(true)}>Set all as completed</button>
-        <button onClick={() => setAll(false)}>Set all as uncompleted</button>
+        <button onClick={() => setAllCompleted(true)}>Set all as completed</button>
+        <button onClick={() => setAllCompleted(false)}>Set all as uncompleted</button>
       </div>
     </div>
   );
